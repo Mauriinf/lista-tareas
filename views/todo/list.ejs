@@ -1,0 +1,54 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+
+<table width='80%' border=0>
+
+	<tr style='text-align:left; background-color:#CCC'>
+		<th>Nombre</th>
+		<th>Descripcion</th>
+		<th>Estado</th>
+		<th>Accion</th>
+	</tr>
+	
+	<!--
+		Using FOREACH LOOP for the users array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<% if (data) { %>
+	<% data.forEach(function(todo){ %>
+		<tr>
+			<td><%= todo.nombre %></td>
+			<td><%= todo.descripcion %></td>
+			<td><%= todo.estado %></td>
+			<td>
+				<div style="float:left">
+					<a href='/tareas/edit/<%= todo.id %>'>Editar</a> &nbsp;							
+					<form method="post" action="/tareas/delete/<%= todo.id %>" style="float:right">
+						<input type="submit" name="delete" value='Eliminar' onClick="return confirm('¿Estás seguro de que quieres eliminar?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
