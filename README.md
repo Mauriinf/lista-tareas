@@ -4,11 +4,11 @@ Node.js, Express y MySQL: Agregar, Editar, Eliminar
 **Creating database and table**
 
 ```
-create database todo;
+create database tareas;
 
-use todo;
+use tareas;
 
-CREATE TABLE todo (
+CREATE TABLE tareas (
 id int(11) NOT NULL auto_increment,
 nombre varchar(100) NOT NULL,
 descripcion varchar(255) NOT NULL,

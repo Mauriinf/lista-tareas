@@ -4,7 +4,7 @@ var config = {
 		user: 	  'root', 		
 		password: '', 		
 		port: 	  3306, 		
-		db: 	  'todo' 		
+		db: 	  'tareas' 		
 	},
 	server: {
 		host: '127.0.0.1',

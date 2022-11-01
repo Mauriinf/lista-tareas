@@ -3,7 +3,7 @@ var app = express()
 
 app.get('/', function(req, res, next) {
 	req.getConnection(function(error, conn) {
-		conn.query('SELECT * FROM todo ORDER BY id DESC',function(err, rows, fields) {
+		conn.query('SELECT * FROM tareas ORDER BY id DESC',function(err, rows, fields) {
 			if (err) {
 				req.flash('error', err)
 				res.render('todo/list', {
@@ -48,7 +48,7 @@ app.post('/add', function(req, res, next){
 		}
 		
 		req.getConnection(function(error, conn) {
-			conn.query('INSERT INTO todo SET ?', todo, function(err, result) {
+			conn.query('INSERT INTO tareas SET ?', todo, function(err, result) {
 				//if(err) throw err
 				if (err) {
 					req.flash('error', err)
@@ -97,7 +97,7 @@ app.post('/add', function(req, res, next){
 // Ver formulario editar Todo
 app.get('/edit/(:id)', function(req, res, next){
 	req.getConnection(function(error, conn) {
-		conn.query('SELECT * FROM todo WHERE id = ?', [req.params.id], function(err, rows, fields) {
+		conn.query('SELECT * FROM tareas WHERE id = ?', [req.params.id], function(err, rows, fields) {
 			if(err) throw err
 			
 			// Si todo no se encuentra
@@ -137,7 +137,7 @@ app.put('/edit/(:id)', function(req, res, next) {
 		}
 		
 		req.getConnection(function(error, conn) {
-			conn.query('UPDATE todo SET ? WHERE id = ' + req.params.id, todo, function(err, result) {
+			conn.query('UPDATE tareas SET ? WHERE id = ' + req.params.id, todo, function(err, result) {
 				//if(err) throw err
 				if (err) {
 					req.flash('error', err)
@@ -188,7 +188,7 @@ app.delete('/delete/(:id)', function(req, res, next) {
 	var todo = { id: req.params.id }
 	
 	req.getConnection(function(error, conn) {
-		conn.query('DELETE FROM todo WHERE id = ' + req.params.id, todo, function(err, result) {
+		conn.query('DELETE FROM tareas WHERE id = ' + req.params.id, todo, function(err, result) {
 			//if(err) throw err
 			if (err) {
 				req.flash('error', err)
